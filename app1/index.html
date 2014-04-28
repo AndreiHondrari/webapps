@@ -1,0 +1,94 @@
+	
+
+    <!DOCTYPE html>
+     
+    <html>
+    <head>
+    <style>
+    #d1 {
+        position: relative;
+        background-color: blue;
+        width: 100px;
+        height: 100px;
+    }
+    </style>
+    <script src="https://code.jquery.com/jquery-2.1.0.min.js"></script>
+    <script>
+     
+    $(function(){
+        var D1_ANIM_SPEED = 1;
+        var KEY_UP = 38;
+        var KEY_DOWN = 40;
+        var KEY_LEFT = 37;
+        var KEY_RIGHT = 39;
+        var KEY_ADD = 107;
+        var KEY_SUBTRACT = 109;
+     
+        var d1 = $("#d1");
+        var d1_x = 0;
+        var d1_y = 0;
+        var d1_offset = 10;
+     
+        function set_d1_pos(x, y) {
+            d1_x_str = x.toString();
+            d1_y_str = y.toString();
+            d1.animate(
+                {
+                    'left': d1_x_str + 'px',
+                    'top': d1_y_str + 'px'
+                },
+                D1_ANIM_SPEED
+            );
+        }
+     
+        function update_speed_label() {
+            $("#speed_label").html(d1_offset.toString());
+        }
+     
+        update_speed_label();
+     
+        $(document).keypress(function(e){
+            key = e.keyCode;
+     
+            if (key == KEY_ADD) {
+                d1_offset += 10;
+                update_speed_label();
+            }
+     
+            if (key == KEY_ADD) {
+                if (d1_offset == 10)
+                    return;
+     
+                d1_offset -= 10;
+                update_speed_label();
+            }
+     
+            if (key == KEY_LEFT)
+                d1_x -= d1_offset;
+                if (d1_x < 0)
+                    d1_x = 0;
+     
+            if (key == KEY_RIGHT)
+                d1_x += d1_offset;
+     
+            if (key == KEY_UP)
+                d1_y -= d1_offset;
+                if (d1_y < 0)
+                    d1_y = 0;
+     
+            if (key == KEY_DOWN)
+                d1_y += d1_offset;
+     
+            set_d1_pos(d1_x, d1_y);
+        });
+    });
+     
+    </script>
+    </head>
+     
+    <body>
+        Speed: <span id="speed_label"></span>
+        <div id="d1"></div>
+    </body>
+     
+    </html>
