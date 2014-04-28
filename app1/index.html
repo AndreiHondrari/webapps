@@ -21,8 +21,8 @@
         var KEY_DOWN = 40;
         var KEY_LEFT = 37;
         var KEY_RIGHT = 39;
-        var KEY_ADD = 107;
-        var KEY_SUBTRACT = 109;
+        var KEY_ADD = 43;
+        var KEY_SUBTRACT = 45;
      
         var d1 = $("#d1");
         var d1_x = 0;
@@ -49,13 +49,14 @@
      
         $(document).keypress(function(e){
             key = e.keyCode;
-     
-            if (key == KEY_ADD) {
+			wkey = e.which;
+			
+            if (wkey == KEY_ADD) {
                 d1_offset += 10;
                 update_speed_label();
             }
      
-            if (key == KEY_ADD) {
+            if (wkey == KEY_SUBTRACT) {
                 if (d1_offset == 10)
                     return;
      
@@ -87,6 +88,7 @@
     </head>
      
     <body>
+		<p>Press +/- to change speed. Use arrow keys to navigate blue box.</p>
         Speed: <span id="speed_label"></span>
         <div id="d1"></div>
     </body>
